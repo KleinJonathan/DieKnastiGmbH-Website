@@ -1,4 +1,6 @@
 <?php
+    echo "<!DOCTYPE html>";
+    
     // Dateipfade definieren
     define("PRIVATE_PATH", dirname(__FILE__));      // Private path
     define("PROJECT_PATH", dirname(PRIVATE_PATH));  // Project path
@@ -16,5 +18,6 @@
     require_once("config.php");
     // Query Funktionen
     require_once("querys.php");
+
 
 ?>

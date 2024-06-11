@@ -13,8 +13,6 @@ a{
 div{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
 }
 
@@ -54,4 +52,9 @@ hr {
 nav{
     display: flex;
     flex-direction: column;
+}
+
+.content{
+    min-height: 100vh;
+    height: 100%;
 }

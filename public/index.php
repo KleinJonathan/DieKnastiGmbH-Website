@@ -1,52 +1,19 @@
-<?php require_once("../private/initialize.php"); ?>
-<?php
-$title = "Die Knasti GmbH";
-$headerTitle = "Die Knasti GmbH";
+<?php 
+require_once("../private/initialize.php");
+$title = "Startseite - Die Knasti GmbH";
+$headerTitle = "Startseite - Die Knasti GmbH";
 ?>
 
 <?php include(HELPER_PATH . "/header.php") ?>
 
 <nav>
     <!-- <a href="/pages/insasse.php">Insasse</a> Geht nicht, da in dem Header von Insasse eine ID gefprdert wird -->
+    <a href="./pages/insassen.php">Insassen</a>
 </nav>
 
-<input placeholder="Test Input" />
+<div class="content">
 
-<hr />
-
-<?php
-$sql = findeInsassen($conn);
-oci_execute($sql);
-?>
-
-<div>
-    <table border='1'>
-        <tr>
-
-            <th>Insasse-ID</th>
-            <th>Vorname</th>
-            <th>Nachname</th>
-            <th>Punkte</th>
-        </tr>
-
-        <?php while ($row = oci_fetch_assoc($sql)) { ?>
-            <tr>
-                <td> <a href="<?php echo root_url('/pages/insasse.php?id=' . hCheck($row['ID'])) ?>"> <?php echo hCheck($row["ID"]) ?> </a></td>
-                <td> <?php echo hCheck($row["VORNAME"]); ?> </td>
-                <td> <?php echo hCheck($row["NACHNAME"]); ?> </td>
-                <td> <?php echo hCheck($row["PUNKTE"]); ?> </td>
-            </tr>
-        <?php } ?>
-    </table>
 </div>
-
-<?php
-if (isset($sql)) {
-    // Freigegebene Ressourcen und schliesen der Verbindung
-    oci_free_statement($sql);
-}
-?>
-
 
 <?php include(HELPER_PATH . "/footer.php") ?>
 
