@@ -2,13 +2,13 @@
 require_once("../../private/initialize.php");
 $title = "Insassen - Die Knasti GmbH";
 $headerTitle = "Insassen - Die Knasti GmbH";
-include(HELPER_PATH . "/header.php");
 ?>
 
+<?php
+include(HELPER_PATH . "/header.php");
+include(HELPER_PATH . "/navbar.php");
+?>
 
-<nav>
-    <!-- <a href="/pages/insasse.php">Insasse</a> Geht nicht, da in dem Header von Insasse eine ID gefprdert wird -->
-</nav>
 
 
 <?php

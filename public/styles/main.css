@@ -16,6 +16,10 @@ div{
 
 }
 
+button{
+    margin: 1rem;
+}
+
 dl{
     border: 4px solid #ccc;
     padding: 0.5em;
@@ -50,11 +54,10 @@ hr {
 }
 
 nav{
-    display: flex;
-    flex-direction: column;
 }
 
 .content{
     min-height: 100vh;
     height: 100%;
 }
+

@@ -17,7 +17,7 @@ function root_url($script_path) {
   }
 
 function hCheck($string=""){
-    return htmlspecialchars($string);
+    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 }
 
 function error_404(){
