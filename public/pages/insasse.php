@@ -85,3 +85,13 @@ if (isset($sql)) {
 ?>
 
 <?php include(HELPER_PATH . "/footer.php") ?>
+
+
+
+
+
+<!-- Editieren von Verträgen  -->
+
+<!-- while (($row = oci_fetch_array($sql, OCI_ASSOC + OCI_RETURN_LOBS))) {  -->
+
+
