@@ -22,7 +22,8 @@ include(HELPER_PATH . "/navbar.php");
             <tr>
                 <th>Insasse-ID</th>
                 <th>Bezeichnung</th>
-                <th>Notiz von Insasse</th>
+                <th>Notiz Insasse</th>
+                <th>Notiz Mitarbeiter</th>
                 <th>Angebots Id</th>
             </tr>
 
@@ -30,7 +31,24 @@ include(HELPER_PATH . "/navbar.php");
                 <tr>
                     <td> <a href="<?php echo root_url('/pages/insasse.php?id=' . hCheck($row['INS_ID'])) ?>"> <?php echo hCheck($row["INS_ID"]) ?> </a></td>
                     <td> <?php echo hCheck($row["BEZEICHNUNG"]); ?> </td>
-                    <td> <?php echo hCheck($row["NOTIZINSASSE"]); ?> </td>
+                    <td> <?php 
+                        $lob = $row["NOTIZINSASSE"];
+                        if ($lob) {
+                            $string = $lob->load();
+                            echo hCheck($string); 
+                        } else {
+                            echo "-";
+                        }?>
+                    </td>
+                    <td> <?php 
+                        $lob = $row["NOTIZMITARBEITER"];
+                        if ($lob) {
+                            $string = $lob->load();
+                            echo hCheck($string); 
+                        } else {
+                            echo "-";
+                        }?>
+                    </td>
                     <td> <?php echo hCheck($row["ANG_ID"]); ?> </td>
                 </tr>
             <?php } ?>

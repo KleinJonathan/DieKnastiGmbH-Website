@@ -30,7 +30,7 @@ include(HELPER_PATH . "/navbar.php");
 ?>
 
 <div class="content">
-
+    <h3>Daten</h3>
     <dl>
         <dt>Nachname: </dt>
         <dd> <?php echo hCheck($row["NACHNAME"]) ?> </dd>
@@ -44,10 +44,46 @@ include(HELPER_PATH . "/navbar.php");
 
     <?php $row = oci_fetch_assoc($sql);?>
 
+    <h3>Aktueller Aufenthalt</h3>
+    <?php if (hCheck($row["INSASSE"])) { 
+        if (hCheck($row["ZELLENID"])){?>
+            <dl>
+                <dt>Gefängnis: </dt>
+                <dd> <?php echo hCheck($row["NAME"]) ?> </dd>
+
+                <dt>Zellenid: </dt>
+                <dd> <?php echo hCheck($row["ZELLENID"]) ?> </dd>
+            
+                <?php 
+                $lob = $row["NOTIZ"];
+                if ($lob) { ?>
+                    <?php $string = $lob->load();?>
+                    <dt>Notiz: </dt>
+                    <dd> <?php echo hCheck($string) ?> </dd>
+                <?php } else { ?>
+                    <dt>Notiz: </dt>
+                    <dd>Keine Notizen </dd>
+                <?php } ?>
+            </dl>
+        <?php } else { ?>
+            <dl>
+                <dt>Der Insasse wurde bereits entlassen.</dt>
+            </dl>
+        <?php } ?>
+
+    <?php } else { ?>
+        <dl>
+            <dt>Der Insasse wurde noch nicht inhaftiert.</dt>
+        </dl>
+    <?php } ?>
+
+    <?php $row = oci_fetch_assoc($sql);?>
+
     <?php 
-        if (hCheck($row["BEZEICHNUNG"])) {
-            do {
-                if (hCheck($row["BEZEICHNUNG"])) { ?>
+        if (hCheck($row["ZUSTAND"])) {?>
+            <h3>Verträge</h3>
+            <?php do {
+                if (hCheck($row["ZUSTAND"])) { ?>
                     <dl>
                         <dt>Begin: </dt>
                         <dd> 
@@ -73,20 +109,11 @@ include(HELPER_PATH . "/navbar.php");
         }
     ?>
 
-    <dl>
-        <dt>Gefängnis: </dt>
-        <dd> <?php echo hCheck($row["NAME"]) ?> </dd>
-
-        <dt>Zellenid: </dt>
-        <dd> <?php echo hCheck($row["ZELLENID"]) ?> </dd>
-    </dl>
-
-    <?php $row = oci_fetch_assoc($sql);?>
 
     <?php 
-        if (hCheck($row["BEZEICHNUNG"])) {
-    
-            do {
+        if (hCheck($row["BEZEICHNUNG"])) {?>
+            <h3>Zwischenfälle</h3>
+            <?php do {
                 if (hCheck($row["BEZEICHNUNG"])) { ?>
                         <dl>
                             <dt>Datum: </dt>
