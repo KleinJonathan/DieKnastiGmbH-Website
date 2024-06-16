@@ -91,7 +91,7 @@ include(HELPER_PATH . "/navbar.php");
                             if ($row["BEGINN"] == null) {
                                 echo "Kein Datum";
                             } else {
-                                echo hCheck($row["BEGINN"]);
+                                echo hCheck(date("d.m.Y", strtotime($row["BEGINN"])));
                             } ?> 
                         </dd>
         
@@ -117,7 +117,7 @@ include(HELPER_PATH . "/navbar.php");
                 if (hCheck($row["BEZEICHNUNG"])) { ?>
                         <dl>
                             <dt>Datum: </dt>
-                            <dd> <?php echo hCheck($row["DATUM"]) ?> </dd>
+                            <dd> <?php echo hCheck(date("d.m.Y", strtotime($row["BEGINN"]))); ?> </dd>
     
                             <dt>Bezeichnung: </dt>
                             <dd> <?php echo hCheck($row["BEZEICHNUNG"]) ?> </dd>
