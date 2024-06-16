@@ -44,18 +44,34 @@ include(HELPER_PATH . "/navbar.php");
 
     <?php $row = oci_fetch_assoc($sql);?>
 
-    <dl>
-        <dt>Begin: </dt>
-        <dd> <?php echo hCheck($row["BEGINN"]) ?> </dd>
-
-        <dt>Bezeichnung: </dt>
-        <dd> <?php echo hCheck($row["BEZEICHNUNG"]) ?> </dd>
-
-        <dt>Zustand: </dt>
-        <dd> <?php echo hCheck($row["ZUSTAND"]) ?> </dd>
-    </dl>
-
-    <?php $row = oci_fetch_assoc($sql);?>
+    <?php 
+        if (hCheck($row["BEZEICHNUNG"])) {
+            do {
+                if (hCheck($row["BEZEICHNUNG"])) { ?>
+                    <dl>
+                        <dt>Begin: </dt>
+                        <dd> 
+                            <?php 
+                            if ($row["BEGINN"] == null) {
+                                echo "Kein Datum";
+                            } else {
+                                echo hCheck($row["BEGINN"]);
+                            } ?> 
+                        </dd>
+        
+                        <dt>Bezeichnung: </dt>
+                        <dd> <?php echo hCheck($row["BEZEICHNUNG"]) ?> </dd>
+        
+                        <dt>Zustand: </dt>
+                        <dd> <?php echo hCheck($row["ZUSTAND"]) ?> </dd>
+                    </dl>
+                    <?php
+                } else {
+                    break;
+                }
+            } while ($row = oci_fetch_assoc($sql));
+        }
+    ?>
 
     <dl>
         <dt>Gefängnis: </dt>
@@ -67,14 +83,25 @@ include(HELPER_PATH . "/navbar.php");
 
     <?php $row = oci_fetch_assoc($sql);?>
 
-    <dl>
-        <dt>Gefängnis: </dt>
-        <dd> <?php echo hCheck($row["DATUM"]) ?> </dd>
-
-        <dt>Zellenid: </dt>
-        <dd> <?php echo hCheck($row["BEZEICHNUNG"]) ?> </dd>
-    </dl>
-
+    <?php 
+        if (hCheck($row["BEZEICHNUNG"])) {
+    
+            do {
+                if (hCheck($row["BEZEICHNUNG"])) { ?>
+                        <dl>
+                            <dt>Datum: </dt>
+                            <dd> <?php echo hCheck($row["DATUM"]) ?> </dd>
+    
+                            <dt>Bezeichnung: </dt>
+                            <dd> <?php echo hCheck($row["BEZEICHNUNG"]) ?> </dd>
+                        </dl>
+                        <?php
+                } else {
+                    break;
+                }
+            } while ($row = oci_fetch_assoc($sql));
+        }
+    ?>
 </div>
 
 <?php
