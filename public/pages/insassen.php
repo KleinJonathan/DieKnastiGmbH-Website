@@ -1,19 +1,20 @@
 <?php 
 require_once("../../private/initialize.php");
 $title = "Insassen - Die Knasti GmbH";
-$headerTitle = "Insassen - Die Knasti GmbH";
 ?>
 
+
+
+
 <?php
+$gef_id = "4";
+$sql = oci_parse($conn, 'begin AlleInsassen(:gef_id); end;');
+oci_bind_by_name($sql, ':gef_id', $gef_id);
+oci_execute($sql);
+$row = oci_fetch_assoc($sql);
+$headerTitle = 'Insassen - Die Knasti GmbH - ' . hCheck($row["GEFANGNIS"]);
 include(HELPER_PATH . "/header.php");
 include(HELPER_PATH . "/navbar.php");
-?>
-
-
-
-<?php
-$sql = findeInsassen($conn);
-oci_execute($sql);
 ?>
 
 
@@ -24,17 +25,17 @@ oci_execute($sql);
             <th>Insasse-ID</th>
             <th>Vorname</th>
             <th>Nachname</th>
-            <th>Punkte</th>
+            <th>Zelle</th>
         </tr>
 
-        <?php while ($row = oci_fetch_assoc($sql)) { ?>
+        <?php do { ?>
             <tr>
                 <td> <a href="<?php echo root_url('/pages/insasse.php?id=' . hCheck($row['ID'])) ?>"> <?php echo hCheck($row["ID"]) ?> </a></td>
                 <td> <?php echo hCheck($row["VORNAME"]); ?> </td>
                 <td> <?php echo hCheck($row["NACHNAME"]); ?> </td>
-                <td> <?php echo hCheck($row["PUNKTE"]); ?> </td>
+                <td> <?php echo hCheck($row["ZELLENID"]); ?> </td>
             </tr>
-        <?php } ?>
+        <?php } while ($row = oci_fetch_assoc($sql)) ?>
     </table>
 </div>
 

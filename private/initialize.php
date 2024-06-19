@@ -16,8 +16,4 @@
     require_once("functions.php");
     // Aufbauen der Verbindung
     require_once("config.php");
-    // Query Funktionen
-    require_once("querys.php");
-
-
 ?>
