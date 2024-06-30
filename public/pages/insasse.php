@@ -1,4 +1,8 @@
 <?php require_once("../../private/initialize.php");
+session_start();
+if (!isset($_SESSION['loginId'])) {
+    redirect(root_url("pages/login.php"));
+}
 
 if (!isset($_GET["id"])) {
     redirect(root_url("../index.php"));
@@ -30,7 +34,7 @@ include(HELPER_PATH . "/navbar.php");
 ?>
 
 <div class="content">
-    <h3>Daten</h3>
+    <h3>Persönliche Daten</h3>
     <dl>
         <dt>Nachname: </dt>
         <dd> <?php echo hCheck($row["NACHNAME"]) ?> </dd>
@@ -41,12 +45,7 @@ include(HELPER_PATH . "/navbar.php");
         <dt>Punkte: </dt>
         <dd> <?php echo hCheck($row["PUNKTE"]) ?> </dd>
 
-        <dt>Gefängnis: </dt>
-        <dd> <?php echo hCheck($row["GEFANGNIS"]) ?> </dd>
 
-        <dt>Zellenid: </dt>
-        <dd> <?php echo hCheck($row["ZELLENID"]) ?> </dd>
-            
         <?php 
         $lob = $row["NOTIZ"];
         if ($lob) { ?>
@@ -63,23 +62,18 @@ include(HELPER_PATH . "/navbar.php");
             
     </dl>
 
-    <?php $row = oci_fetch_assoc($sql);?>
-
     <h3>Aktueller Aufenthalt</h3>
-    <?php if (hCheck($row["INSASSE"])) { 
-        if (hCheck($row["ZELLENID"])){?>
+    <?php if (hCheck($row["ZELLENID"])) {?>
             <dl>
+                <dt>Gefängnis: </dt>
+                <dd> <?php echo hCheck($row["GEFANGNIS"]) ?> </dd>
 
+                <dt>Zelle: </dt>
+                <dd> <?php echo hCheck($row["ZELLENID"]) ?> </dd>
             </dl>
-        <?php } else { ?>
-            <dl>
-                <dt>Der Insasse wurde bereits entlassen.</dt>
-            </dl>
-        <?php } ?>
-
     <?php } else { ?>
         <dl>
-            <dt>Der Insasse wurde noch nicht inhaftiert.</dt>
+            <dt>Der Insasse ist zur Zeit nicht inhaftiert.</dt>
         </dl>
     <?php } ?>
 
@@ -106,6 +100,13 @@ include(HELPER_PATH . "/navbar.php");
         
                         <dt>Zustand: </dt>
                         <dd> <?php echo hCheck($row["ZUSTAND"]) ?> </dd>
+                        <?php if ($row["ZUSTAND"] == "In Bearbeitung") {?>
+                            <dd>
+                                <button 
+                                style="margin: 0;"
+                                ><a href="<?php echo root_url('/pages/bearbeiteVertrag.php?id=' . hCheck($row['VER_ID'])) ?>">Bearbeiten</a></button>
+                            </dd>
+                        <?php }?>
                     </dl>
                     <?php
                 } else {
@@ -145,13 +146,3 @@ if (isset($sql)) {
 ?>
 
 <?php include(HELPER_PATH . "/footer.php") ?>
-
-
-
-
-
-<!-- Editieren von Verträgen  -->
-
-<!-- while (($row = oci_fetch_array($sql, OCI_ASSOC + OCI_RETURN_LOBS))) {  -->
-
-

@@ -1,13 +1,17 @@
 <?php 
 require_once("../../private/initialize.php");
 $title = "Insassen - Die Knasti GmbH";
+session_start();
+if (!isset($_SESSION['loginId'])) {
+    redirect(root_url("pages/login.php"));
+}
 ?>
 
 
 
 
 <?php
-$gef_id = "4";
+$gef_id = $_SESSION['gefId'];
 $sql = oci_parse($conn, 'begin AlleInsassen(:gef_id); end;');
 oci_bind_by_name($sql, ':gef_id', $gef_id);
 oci_execute($sql);

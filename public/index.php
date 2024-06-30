@@ -1,10 +1,13 @@
-<?php 
+<?php
 require_once("../private/initialize.php");
 $title = "Startseite - Die Knasti GmbH";
 $headerTitle = "Startseite - Die Knasti GmbH";
-?>
+session_start();
+if (!isset($_SESSION['loginId'])) {
+    redirect(root_url("pages/login.php"));
+} ?>
 
-<?php 
+<?php
 include(HELPER_PATH . "/header.php");
 include(HELPER_PATH . "/navbar.php");
 ?>
