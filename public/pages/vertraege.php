@@ -48,7 +48,7 @@ include(HELPER_PATH . "/navbar.php");
                         }?>
                     </td>
                     <td> <?php 
-                        $lob = $row["NOTIZMITARBEITER"];
+                        $lob = $row["NOTIZGEFAENGNIS"];
                         if ($lob) {
                             $string = $lob->load();
                             echo hCheck($string); 

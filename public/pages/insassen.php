@@ -27,16 +27,16 @@ include(HELPER_PATH . "/navbar.php");
         <tr>
 
             <th>Insasse-ID</th>
-            <th>Vorname</th>
             <th>Nachname</th>
+            <th>Vorname</th>
             <th>Zelle</th>
         </tr>
 
         <?php do { ?>
             <tr>
                 <td> <a href="<?php echo root_url('/pages/insasse.php?id=' . hCheck($row['ID'])) ?>"> <?php echo hCheck($row["ID"]) ?> </a></td>
-                <td> <?php echo hCheck($row["VORNAME"]); ?> </td>
                 <td> <?php echo hCheck($row["NACHNAME"]); ?> </td>
+                <td> <?php echo hCheck($row["VORNAME"]); ?> </td>
                 <td> <?php echo hCheck($row["ZELLENID"]); ?> </td>
             </tr>
         <?php } while ($row = oci_fetch_assoc($sql)) ?>

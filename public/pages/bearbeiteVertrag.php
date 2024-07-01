@@ -130,8 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </dd>
 
         </dl>
-        <button type="submit">Speichern</button>
-        <!-- <button type="submit"><a href="./vertraege.php">Speichern</a></button> -->
+        <button type="submit"><a href="./vertraege.php">Speichern</a></button>
     </form>
 </div>
 
