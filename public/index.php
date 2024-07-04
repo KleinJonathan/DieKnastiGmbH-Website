@@ -1,7 +1,8 @@
 <?php
 require_once("../private/initialize.php");
-$title = "Startseite - Die Knasti GmbH";
-$headerTitle = "Startseite - Die Knasti GmbH";
+$title = 'Die Knasti GmbH ' . ' - ' . $_SESSION['name'];
+$headerTitle = "Die Knasti GmbH";
+$headerSubTitle = "Startseite";
 session_start();
 if (!isset($_SESSION['loginId'])) {
     redirect(root_url("pages/login.php"));

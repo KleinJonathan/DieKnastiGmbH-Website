@@ -3,23 +3,22 @@ $id = $_GET["id"];
 session_start();
 if (!isset($_SESSION['loginId'])) {
     redirect(root_url("pages/login.php"));
-} ?>
+} 
+?>
 
 <?php
-// debug_to_console($id);
-// Fetchen der Daten aus der Datenbank
+$title = 'Die Knasti GmbH ' . ' - ' . $_SESSION['name'];
+$headerTitle = "Die Knasti GmbH";
+$headerSubTitle = "Vertrag bearbeiten";
+include(HELPER_PATH . "/header.php");
+include(HELPER_PATH . "/navbar.php");
+
 hCheck($id);
 $sql = oci_parse($conn, 'begin mitarbeiterVertrag(:i_id); end;');
 oci_bind_by_name($sql, ':i_id', $id);
-
 oci_execute($sql);
 $row = oci_fetch_assoc($sql);
-// Redirect wenn keine Daten gefunden wurden
 
-$title = "Vertrag bearbeiten - Die Knasti GmbH";
-$headerTitle = "Vertrag bearbeiten - Die Knasti GmbH";
-include(HELPER_PATH . "/header.php");
-include(HELPER_PATH . "/navbar.php");
 ?>
 
 <?php
@@ -45,6 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     oci_execute($sql);
+
+    ?>
+    <script type="text/javascript">
+    window.location = "http://localhost:3000/pages/vertraege.php/";
+    </script> 
+    <?php
 }
 ?>
 
@@ -130,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </dd>
 
         </dl>
-        <button type="submit"><a href="./vertraege.php">Speichern</a></button>
+        <button type="submit">Speichern</button>
     </form>
 </div>
 

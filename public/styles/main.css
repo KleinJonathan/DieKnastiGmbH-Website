@@ -10,6 +10,11 @@ a{
     color: black;
 }
 
+header{
+    justify-content: center;
+    text-align: center;
+}
+
 div{
     display: flex;
     flex-direction: column;

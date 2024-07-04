@@ -12,8 +12,9 @@ $sql = oci_parse($conn, 'begin VertraegeInBearbeitung(:gef_id); end;');
 oci_bind_by_name($sql, ':gef_id', $gef_id);
 oci_execute($sql);
 
-$title = "Verträge in Bearbeitung - Die Knasti GmbH";
-$headerTitle = "Verträge in Bearbeitung - Die Knasti GmbH";
+$title = 'Die Knasti GmbH ' . ' - ' . $_SESSION['name'];
+$headerTitle = "Die Knasti GmbH";
+$headerSubTitle = "Verträge in Bearbeitung";
 include(HELPER_PATH . "/header.php");
 include(HELPER_PATH . "/navbar.php");
 ?>
@@ -29,7 +30,6 @@ include(HELPER_PATH . "/navbar.php");
                 <th>Bezeichnung</th>
                 <th>Notiz Insasse</th>
                 <th>Notiz Mitarbeiter</th>
-                <th>Angebots Id</th>
                 <th>Bearbeiten</th>
             </tr>
 
@@ -56,7 +56,6 @@ include(HELPER_PATH . "/navbar.php");
                             echo "-";
                         }?>
                     </td>
-                    <td> <?php echo hCheck($row["ANG_ID"]); ?> </td>
                     <td>
                         <a href="<?php echo root_url('/pages/bearbeiteVertrag.php?id=' . hCheck($row['VER_ID'])) ?>">
                             <button style="margin: 5px;" >

@@ -7,13 +7,14 @@ session_start();
 
 
 <?php
-$headerTitle = 'Login - Die Knasti GmbH';
+$headerTitle = 'Die Knasti GmbH';
+$headerSubTitle = 'Login';
 include(HELPER_PATH . "/header.php");
 
-// Setzen des GEfaengnis und des Mitarbeiters in Session Variablen
-$_SESSION['loginId'] = '10';
+// Setzen des Gefaengnis und des Mitarbeiters in Session Variablen
+$_SESSION['loginId'] = '10';    
 $_SESSION['gefId'] = '3';
-// include(HELPER_PATH . "/navbar.php");
+$_SESSION['name'] = 'Justizvollzugsanstalt Hameln';
 ?>
 <nav></nav>
 <hr/>

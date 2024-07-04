@@ -11,4 +11,5 @@
 <body>
     <header>
         <h1><?php echo $headerTitle ?></h1>
+        <h2><?php echo $headerSubTitle ?></h2>
     </header>

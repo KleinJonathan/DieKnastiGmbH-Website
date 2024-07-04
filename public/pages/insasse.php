@@ -14,21 +14,20 @@ $id = $_GET["id"];
 <!-- Der String muss als "normale" chars umgewandelt werden um die Daten unschädlich zu machen -->
 <!-- http://localhost:8000/pages/insasse.php?id=%3Cstrong%3E1%3C/string%3E -->
 <?php
-// debug_to_console($id);
-// Fetchen der Daten aus der Datenbank
 hCheck($id);
 $sql = oci_parse($conn, 'begin EinzelnerInsassen(:i_id); end;');
 oci_bind_by_name($sql, ':i_id', $id);
-
 oci_execute($sql);
 $row = oci_fetch_assoc($sql);
+
 // Redirect wenn keine Daten gefunden wurden
 if (!$row) {
     redirect(root_url("../index.php"));
 }
 
-$title = hCheck($row["NACHNAME"]) . ", " . hCheck($row["VORNAME"]);
-$headerTitle = hCheck($row["NACHNAME"]) . ", " . hCheck($row["VORNAME"]);
+$title = 'Die Knasti GmbH ' . ' - ' . $_SESSION['name'];
+$headerTitle = "Die KnastiGmbH";
+$headerSubTitle = hCheck($row["NACHNAME"]) . ", " . hCheck($row["VORNAME"]);
 include(HELPER_PATH . "/header.php");
 include(HELPER_PATH . "/navbar.php");
 ?>

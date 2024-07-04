@@ -1,6 +1,6 @@
 <?php 
 require_once("../../private/initialize.php");
-$title = "Insassen - Die Knasti GmbH";
+$title = 'Die Knasti GmbH ' . ' - ' . $_SESSION['name'];
 session_start();
 if (!isset($_SESSION['loginId'])) {
     redirect(root_url("pages/login.php"));
@@ -16,7 +16,8 @@ $sql = oci_parse($conn, 'begin AlleInsassen(:gef_id); end;');
 oci_bind_by_name($sql, ':gef_id', $gef_id);
 oci_execute($sql);
 $row = oci_fetch_assoc($sql);
-$headerTitle = 'Insassen - Die Knasti GmbH - ' . hCheck($row["GEFANGNIS"]);
+$headerTitle = 'Die Knasti GmbH';
+$headerSubTitle = "Insassen";
 include(HELPER_PATH . "/header.php");
 include(HELPER_PATH . "/navbar.php");
 ?>
