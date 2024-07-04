@@ -21,12 +21,12 @@ include(HELPER_PATH . "/navbar.php");
 
 <div class="content">
     <h1>Willkommen bei der Knasti GmbH</h1>
-    <p>Sie finden hier Möglichkeiten die Anträge der Insassen zu bearbeiten.</p>
+    <p>Sie finden hier Möglichkeiten die <b>Anträge</b> der Insassen zu <b>bearbeiten</b>.</p>
     <p>Informationen über die Insassen, welche Ihnen helfen können über den Antrag zu enscheiden sind an entsprechenden Stellen verlinkt.</p>
-    <p>Inhalt:</p>
+    <h3>Inhalt:</h3>
     <ul>
-        <li>Insassen: Übersicht über alle Insasen aus Ihrem Gefängnis</li>
-        <li>Verträge in bearbeitung: Überisicht über alle noch offenen und zu bearbeitenden Verträge</li>
+        <li><b>Insassen</b>: Übersicht</b> über alle Insasen aus Ihrem Gefängnis</li>
+        <li><b>Verträge in bearbeitung:</b> <b>Überisicht</b> über alle noch offenen und zu bearbeitenden Verträge</li>
     </ul>
 </div>
 

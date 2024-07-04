@@ -42,6 +42,14 @@ dd {
     padding: 0 0 0.5em 0;
 }
 
+nav{
+    margin-bottom: 1.5em;
+}
+
+td{
+    padding: 0.5em;
+}
+
 footer{
     background-color: #ccc;
     height: 30px;
@@ -59,11 +67,11 @@ hr {
     margin: 1rem;
 }
 
-nav{
-}
-
 .content{
     min-height: 100vh;
     height: 100%;
 }
 
+button::hover{
+    background-color: #ccc;
+}
