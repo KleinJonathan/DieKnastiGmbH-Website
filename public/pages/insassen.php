@@ -1,7 +1,7 @@
 <?php 
 require_once("../../private/initialize.php");
-$title = 'Die Knasti GmbH ' . ' - ' . $_SESSION['name'];
 session_start();
+$title = 'Die Knasti GmbH ' . ' - ' . $_SESSION['name'];
 // Redirect wenn nicht eingeloggt
 if (!isset($_SESSION['loginId'])) {
     redirect(root_url("pages/login.php"));

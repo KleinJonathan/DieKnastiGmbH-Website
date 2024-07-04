@@ -1,6 +1,6 @@
 <?php
 require_once("../../private/initialize.php");
-$title = "Insassen - Die Knasti GmbH";
+$title = "Die Knasti GmbH";
 session_start();
 ?>
 

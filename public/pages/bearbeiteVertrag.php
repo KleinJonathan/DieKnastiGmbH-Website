@@ -96,7 +96,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <input type="hidden" name="id" value="<?php echo hCheck($row["VER_ID"]) ?>">
             <dt>Insasse: </dt>
-            <dd> <?php echo hCheck($row["VORNAME"]) . ', ' . hCheck($row["NACHNAME"]) ?> </dd>
+            <dd> 
+                <?php echo hCheck($row["VORNAME"]) . ', ' . hCheck($row["NACHNAME"]) ?> 
+                <button style="margin-top: 0; margin-bottom: 0"><a href="<?php echo root_url('/pages/insasse.php?id=' . hCheck($row['INS_ID'])) ?>">Ansehen</a></button>
+            </dd>
 
             <dt>Erstellt: </dt>
             <dd> <?php echo hCheck($row["ERSTELLT"]) ?> </dd>
