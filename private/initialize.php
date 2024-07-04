@@ -1,3 +1,5 @@
+<!-- Imitialisierungsdatei, welche vor jedem Seitenaufruf geladen wird -->
+<!-- Hier wird unter anderen die DB Verbindung aufgebaut -->
 <?php
     echo "<!DOCTYPE html>";
     

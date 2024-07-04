@@ -1,3 +1,5 @@
+<!-- Beispiel Configdatei zum Verbinden mit einer Orable Datenbank -->
+<!-- Die Datei muss kopiert und umbenannt werden in config.php -->
 <?php
     // Verbindung zur Datenbank aufbauen
     $db = "(DESCRIPTION=(ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = SERVERARRD)(PORT = POST)))(CONNECT_DATA=(SID=SID)))";

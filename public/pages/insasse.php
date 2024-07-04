@@ -1,5 +1,7 @@
 <?php require_once("../../private/initialize.php");
 session_start();
+
+// Redirect wenn nicht eingeloggt oder keine ID übergeben wurde
 if (!isset($_SESSION['loginId'])) {
     redirect(root_url("pages/login.php"));
 }
@@ -14,6 +16,7 @@ $id = $_GET["id"];
 <!-- Der String muss als "normale" chars umgewandelt werden um die Daten unschädlich zu machen -->
 <!-- http://localhost:8000/pages/insasse.php?id=%3Cstrong%3E1%3C/string%3E -->
 <?php
+// Abrufen der Daten des Insassen und setzen der Page Variablen
 hCheck($id);
 $sql = oci_parse($conn, 'begin EinzelnerInsassen(:i_id); end;');
 oci_bind_by_name($sql, ':i_id', $id);

@@ -1,12 +1,16 @@
 <?php
 require_once("../private/initialize.php");
+session_start();
+// Redirect wenn nicht eingeloggt
+if (!isset($_SESSION['loginId'])) {
+    redirect(root_url("pages/login.php"));
+} 
+
+// Setzern der Page Variablen
 $title = 'Die Knasti GmbH ' . ' - ' . $_SESSION['name'];
 $headerTitle = "Die Knasti GmbH";
 $headerSubTitle = "Startseite";
-session_start();
-if (!isset($_SESSION['loginId'])) {
-    redirect(root_url("pages/login.php"));
-} ?>
+?>
 
 <?php
 include(HELPER_PATH . "/header.php");
@@ -17,14 +21,13 @@ include(HELPER_PATH . "/navbar.php");
 
 <div class="content">
     <h1>Willkommen bei der Knasti GmbH</h1>
-    <p>Die Knasti GmbH ist ein Unternehmen, welches sich auf die Verwaltung von Gefängnissen spezialisiert hat. Wir bieten Ihnen eine Vielzahl von Dienstleistungen an, um den Alltag in Gefängnissen zu erleichtern.</p>
-    <p>Unsere Dienstleistungen umfassen unter anderem:</p>
+    <p>Sie finden hier Möglichkeiten die Anträge der Insassen zu bearbeiten.</p>
+    <p>Informationen über die Insassen, welche Ihnen helfen können über den Antrag zu enscheiden sind an entsprechenden Stellen verlinkt.</p>
+    <p>Inhalt:</p>
     <ul>
-        <li>Verwaltung von Insassen</li>
-        <li>Verwaltung von Verträgen</li>
-        <li>Verwaltung von Gefängnissen</li>
+        <li>Insassen: Übersicht über alle Insasen aus Ihrem Gefängnis</li>
+        <li>Verträge in bearbeitung: Überisicht über alle noch offenen und zu bearbeitenden Verträge</li>
     </ul>
-    <p>Wir freuen uns, Ihnen bei der Verwaltung Ihrer Gefängnisse zu helfen.</p>
 </div>
 
 <?php include(HELPER_PATH . "/footer.php") ?>

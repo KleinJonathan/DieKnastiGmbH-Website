@@ -7,6 +7,7 @@ session_start();
 
 
 <?php
+// Setzen der Page Variablen
 $headerTitle = 'Die Knasti GmbH';
 $headerSubTitle = 'Login';
 include(HELPER_PATH . "/header.php");
