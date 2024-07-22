@@ -13,14 +13,13 @@ function debug_to_console($data)
 
 // Pfad zum Root Verzeichnis um leichter die Dateien zu finden
 function root_url($script_path) {
-    // add the leading '/' if not present
     if($script_path[0] != '/') {
       $script_path = "/" . $script_path;
     }
     return WWW_ROOT . $script_path;
   }
 
-  // Funktion um die Eingaben von Formularen zu überprüfen
+// Funktion um die Eingaben von Formularen zu überprüfen und zu entschärfen
 function hCheck($string=""){
     return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 }

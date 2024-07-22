@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("../../private/initialize.php");
 session_start();
 $title = 'Die Knasti GmbH ' . ' - ' . $_SESSION['name'];
@@ -8,11 +8,8 @@ if (!isset($_SESSION['loginId'])) {
 }
 ?>
 
-
-
-
 <?php
-// Abrufen der Daten des Insassen und setzen der Page Variablen
+// Abrufen der Daten des Insassen mithilfe einer Stored Procedure und setzen der Page Variablen
 $gef_id = $_SESSION['gefId'];
 $sql = oci_parse($conn, 'begin AlleInsassen(:gef_id); end;');
 oci_bind_by_name($sql, ':gef_id', $gef_id);
@@ -25,6 +22,7 @@ include(HELPER_PATH . "/navbar.php");
 ?>
 
 
+<!-- HTML Code zum anzeigen der Insassen mit kutzen Informationen -->
 <div class="content">
     <table border='1'>
         <tr>
@@ -40,7 +38,7 @@ include(HELPER_PATH . "/navbar.php");
                 <td> <?php echo hCheck($row["NACHNAME"]); ?> </td>
                 <td> <?php echo hCheck($row["VORNAME"]); ?> </td>
                 <td> <?php echo hCheck($row["ZELLENID"]); ?> </td>
-                <td><a href="<?php echo root_url('/pages/insasse.php?id=' . hCheck($row['ID'])) ?>"><button  style="margin: 5px;"> Ansehen</button></a></td>
+                <td><a href="<?php echo root_url('/pages/insasse.php?id=' . hCheck($row['ID'])) ?>"><button style="margin: 5px;"> Ansehen</button></a></td>
             </tr>
         <?php } while ($row = oci_fetch_assoc($sql)) ?>
     </table>
@@ -55,15 +53,3 @@ if (isset($sql)) {
 
 
 <?php include(HELPER_PATH . "/footer.php") ?>
-
-
-<!-- Editieren von Verträgen  -->
-
-<!-- while (($row = oci_fetch_array($sql, OCI_ASSOC + OCI_RETURN_LOBS))) {  -->
-
-
-<!-- https://www.php.net/manual/en/oci8.examples.php -->
-<!-- https://www.oracle.com/webfolder/technetwork/tutorials/obe/db/oow10/php_db/php_db.htm -->
-<!-- https://www.w3schools.com/php/php_cookies.asp -->
-<!-- https://www.linkedin.com/learning/php-with-mysql-essential-training-1-the-basics?contextUrn=urn%3Ali%3AlyndaLearningPath%3A57bdd8a292015ae4c0cb990f&u=82590906 -->
-<!-- https://www.linkedin.com/learning/php-with-mysql-essential-training-2-build-a-cms?contextUrn=urn%3Ali%3AlyndaLearningPath%3A57bdd8a292015ae4c0cb990f&u=82590906 -->

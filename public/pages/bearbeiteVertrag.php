@@ -1,6 +1,6 @@
 <?php require_once("../../private/initialize.php");
-$id = $_GET["id"];
 session_start();
+$id = $_GET["id"];
 // Redirect wenn nicht eingeloggt
 if (!isset($_SESSION['loginId'])) {
     redirect(root_url("pages/login.php"));
@@ -21,14 +21,12 @@ $sql = oci_parse($conn, 'begin mitarbeiterVertrag(:i_id); end;');
 oci_bind_by_name($sql, ':i_id', $id);
 oci_execute($sql);
 $row = oci_fetch_assoc($sql);
-
 ?>
 
 <?php
 // Funktion zum updaten eines Vertags
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Speichern Sie das Datum aus dem Formular in einer Variable
-    $id = $_POST['id'] ?? '';
+    $vertrag_id = $_POST['id'] ?? '';
     $notizmitarbeiter = $_POST['notizmitarbeiter'] ?? '';
     $beginn = $_POST['beginn'] ?? '';
     $beginn_formatiert = $beginn ? date('d/m/Y', strtotime($beginn)) : NULL;
@@ -37,20 +35,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $verguetung = $_POST['verguetung'] ?? '';
     $status = $_POST['status'] ?? '';
 
+    // Aufruf der Funktion zum updaten des Vertrags
     $sql = oci_parse($conn, 'begin BearbeiteVertrag(:ver, :beginn, :ende, :verguetung, :vertrag_zustand, :notizGefaengnis); end;');
 
-    oci_bind_by_name($sql, ':ver', $id);
+    oci_bind_by_name($sql, ':ver', $vertrag_id);
     oci_bind_by_name($sql, ':beginn', $beginn_formatiert);
     oci_bind_by_name($sql, ':ende', $ende_formatiert);
     oci_bind_by_name($sql, ':verguetung', $verguetung);
     oci_bind_by_name($sql, ':vertrag_zustand', $status);
     oci_bind_by_name($sql, ':notizGefaengnis', $notizmitarbeiter);
 
-
     oci_execute($sql);
 
     ?>
-    <!-- Redirect -->
+    <!-- Redirect zu den Verträgen -->
     <script type="text/javascript">
     window.location = "http://localhost:3000/pages/vertraege.php/";
     </script> 
@@ -58,9 +56,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
+<!-- HTML Code -->
 <div class="content">
-    <?php if (hCheck($row["BENACHRICHTIGUNGSPFLICHT"]) == null){ ?>
+    <!-- Prüfen, ob das Gericht benachrichtigt werden muss -->
+    <?php if (hCheck($row["BENACHRICHTIGSUNDSPFLICHT"]) == null){ ?>
             <button id="gerichtAnfragenButton">Gericht anfragen</button>
             
             <script type="text/javascript">
@@ -69,6 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 };
             </script>
     <?php } ?>
+
+    <!-- Formular zum anpassen der Vertragsdaten -->
     <form action="bearbeiteVertrag.php" method="post">
         <dl>
             <?php
@@ -136,12 +137,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <dd>
                 <select name="status">
                     <option value="In Bearbeitung" <?php if ($row["ZUSTAND"] == "In Bearbeitung") echo 'selected'; ?>>In Bearbeitung</option>
-                    <option value="Genehmigt" <?php if ($row["ZUSTAND"] == "Genehmigt") echo 'selected'; ?>>Genehmigt</option>
-                    <option value="Abgeschlossen" <?php if ($row["ZUSTAND"] == "Abgeschlossen") echo 'selected'; ?>>Abgeschlossen</option>
-                    <option value="Abgelehnt" <?php if ($row["ZUSTAND"] == "Abgelehnt") echo 'selected'; ?>>Abgelehnt</option>
+                    <option value="Genehmigt" <?php if ($row["ZUSTAND"] == "Genehmigt") echo 'selected'; ?>>Genehmigen</option>
+                    <option value="Abgelehnt" <?php if ($row["ZUSTAND"] == "Abgelehnt") echo 'selected'; ?>>Ablehnen</option>
                 </select>
             </dd>
-
         </dl>
         <button type="submit">Speichern</button>
     </form>

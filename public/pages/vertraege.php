@@ -5,8 +5,6 @@ if (!isset($_SESSION['loginId'])) {
     redirect(root_url("pages/login.php"));
 }?>
 
-<!-- Der String muss als "normale" chars umgewandelt werden um die Daten unschädlich zu machen -->
-<!-- http://localhost:8000/pages/insasse.php?id=%3Cstrong%3E1%3C/string%3E -->
 <?php
 // Abrufen der Daten der Verträge in bearbeitung und setzen der Page Variablen
 $gef_id = $_SESSION['gefId'];
@@ -21,10 +19,13 @@ include(HELPER_PATH . "/header.php");
 include(HELPER_PATH . "/navbar.php");
 ?>
 
+<!-- HTML Code zum anzeigen der Verträge in Bearbeitung -->
 <div class="content">
+    <!-- Prüfen, ob Verträge in Bearbeitung sind -->
     <?php if (!oci_execute($sql)) { ?>
         <p>Keine Verträge in Bearbeitung</p>
     <?php } else { ?>
+        <!-- Erstellen einer Tabelle und einfügen der Daten -->
         <table border='1'>
             <tr>
                 <th>Erstellt</th>

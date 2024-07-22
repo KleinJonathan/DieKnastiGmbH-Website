@@ -1,6 +1,7 @@
 <!-- Header zum einfügen in jede Datei mit Titel, Tabtitle -->
 <html lang="de" id="top">
 
+<!-- Header, welcher in jede Datei eingefügt wird. -->
 <head>
     <title><?php echo $title; ?></title>
     <meta content="text/html; charset=utf-8">

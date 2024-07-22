@@ -3,4 +3,5 @@
 2. Ersetzen der Beispieldaten mit Ihren Datenbank Server- und Anmeldungsdaten 
 
 # Starten des Dev Webservers:
-php -S localhost:8000 -t .
+Navigieren in das Unterverzeichnis /public
+php -S localhost:3000 -t .

@@ -18,7 +18,7 @@ include(HELPER_PATH . "/navbar.php");
 ?>
 
 
-
+<!-- HTML Code -->
 <div class="content">
     <h1>Willkommen bei der Knasti GmbH</h1>
     <p>Sie finden hier Möglichkeiten die <b>Anträge</b> der Insassen zu <b>bearbeiten</b>.</p>

@@ -1,4 +1,4 @@
-<!-- Navigarionsleite zum eingügen in jede Datei falls gewünscht -->
+<!-- Navigarionsleite zum eingügen in jede Datei falls gewünscht. Login zum Beispiel erhält keine Navigationsleiste -->
 <hr />
 <nav>
     <button><a href="<?php echo root_url("./index.php") ?>">Homepage</a></button>
